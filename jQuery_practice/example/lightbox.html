@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>燈箱效果</title>
+    <link rel="stylesheet" href="css/lightbox.css">
+</head>
+
+<body>
+    <!-- div.gallary>a.lightbox>img -->
+    <div class="gallery">
+        <!-- 點小圖要開啟大圖但不能跳別一頁 -->
+        <a href="imgs/japan1.jpg" class="lightbox">
+            <img src="imgs/thumbs/japan1.jpg" alt="japan1">
+        </a>
+        <a href="imgs/japan2.jpg" class="lightbox">
+            <img src="imgs/thumbs/japan2.jpg" alt="japan2">
+        </a>
+        <a href="imgs/japan3.jpg" class="lightbox">
+            <img src="imgs/thumbs/japan3.jpg" alt="japan3">
+        </a>
+    </div>
+    <div class="lightbox-overlay">
+        <div class="lightbox-content">
+            <img src="imgs/japan1.jpg" alt="" class="lightbox-img">
+            <span class="lightbox-close">&times;</span>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/lightbox.js"> </script>
+</body>
+
+</html>
