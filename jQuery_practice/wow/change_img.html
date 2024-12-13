@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圖片切換</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <style>
+        .img_box {
+            text-align: center;
+            margin: auto;
+        }
+
+        .container {
+            width: 50%;
+        }
+
+        .circle {
+            width: 15px;
+            height: 15px;
+            border: 2px solid rgb(113, 118, 126);
+            border-radius: 50%;
+        }
+
+        .active {
+            border: 2px solid blue;
+        }
+
+        #circle-group {
+            width: 150px;
+            display: flex;
+            justify-content: space-evenly;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="img_box">
+            <img src="imgs/christmas-bell.png" alt="" class="pic">
+        </div>
+        <div class="d-flex justify-content-around mt-5">
+            <button class="btn btn-outline-primary" id="Prev">上一張</button>
+            <div id="circle-group"> </div>
+            <button class="btn btn-outline-primary" id="Next">下一張</button>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            //圖片陣列
+            let imgs = ['imgs/christmas-bell.png', 'imgs/christmas-lights.png', 'imgs/mistletoe.png', 'imgs/presents.png', 'imgs/snowman.png']
+            console.log(imgs.length);
+
+            //取得陣列長度
+            let img_lenth = imgs.length;
+
+            //圖片索引值
+            let index = 0;
+
+            //使用each把圖片加入img_box物件並給index值
+            // $.each(imgs, function (index, value) {
+            //     $('.img_box').append(`<img src="${value}" alt="圖片${index}" class="pic">`);
+            // })
+
+            //用for迴圈加入circle的html
+            for (let i = 0; i < img_lenth; i++) {
+                $('#circle-group').append('<div class="circle"></div>');
+            }
+
+            //使用next()
+            var current_circle = $('.circle').first();//預設第一組circle為目前物件->迴圈才加入circle，位置要放在for迴圈後面
+
+            $('.circle').eq(0).addClass('active');
+
+            //取得屬性的值->修改值
+            //$('.pic').attr("src", 'imgs/christmas-lights.png');
+            //console.log($('.pic').attr("src"));
+
+            //按上一張按鈕的動作
+            $('#Prev').on('click', function () {
+                index--;
+                if (index < 0) { index = (img_lenth - 1) }
+                $('.pic').attr("src", imgs[index]);
+                $('.circle').removeClass('active')
+                $('.circle').eq(index).addClass('active')
+            })
+
+            //按下一張按鈕的動作
+            $('#Next').on('click', function () {
+                // $('.circle').removeClass('active')
+                // $('.circle').eq(index).next().addClass('active')
+
+                //索引值加1
+                index++;
+
+                //所以值超過後回到0->循環
+                if (index > (img_lenth - 1)) { index = 0 }
+                //將圖片src換成陣列的第[]張圖片
+                $('.pic').attr("src", imgs[index]);
+
+                //取得circle目前active的索引值(跟圖片索引值一樣)
+                // let active_i = $('#circle-group').find('.active').index();
+                // console.log(active_i);
+                $('.circle').removeClass('active')
+                $('.circle').eq(index).addClass('active')
+
+                //使用next()參考
+                // current_circle.next().css('background-color', 'purple');
+                // current_circle = current_circle.next();
+            })
+
+            //自動輪播 回家作業
+            // setInterval(() => {
+
+            // }, interval);
+
+        })
+    </script>
+</body>
+
+</html>

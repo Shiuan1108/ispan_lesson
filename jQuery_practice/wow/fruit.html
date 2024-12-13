@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Each用法</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <form action="">
+            <div class="mb-3 my-5 w-50">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>請選擇水果</option>
+                    <!-- <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option> -->
+                </select>
+            </div>
+            <div class="mb-3" id="habbits">
+                <h3>請勾選興趣</h3>
+                <!-- <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Default checkbox
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Checked checkbox
+                    </label>
+                </div> -->
+            </div>
+        </form>
+        <div id="fruits">
+            <p>蘋果</p>
+            <p>香蕉</p>
+            <p>橙子</p>
+            <p>草莓</p>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var fruits = ['蘋果', '香蕉', '葡萄', '橙子', '鳳梨', '西瓜', '草莓']
+            $.each(fruits, function (i, text) {
+                $('.form-select').append(`<option value="${i}">${text}</option>`)
+            })
+
+            let habbits = ['游泳', '看電影', '跳舞', '手工藝', '聽音樂']
+            $.each(habbits, function (i, item) {
+                $('#habbits').append(`
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="${i}" id="habbit${i}">
+                    <label class="form-check-label" for="habbit${i}">
+                    ${item}
+                    </label>
+                </div>
+                `);
+            })
+            //使用map轉換元素(要很多個的時候才使用)
+            $('#fruits p').map(function (i, element) {
+                //console.log(element);//取得<p>蘋果</p><p>香蕉</p><p>橙子</p><p>草莓</p>
+                //$(element).css("font-size", "30px")->範例:修改<p></p>的css
+                return $(element).append(`<span style="color:red">(特價中)</span>`)
+
+            })
+        })
+    </script>
+</body>
+
+</html>
